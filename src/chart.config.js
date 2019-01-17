@@ -1,72 +1,86 @@
-var hours = ['12a', '1a', '2a', '3a', '4a', '5a', '6a',
-        '7a', '8a', '9a','10a','11a',
-        '12p', '1p', '2p', '3p', '4p', '5p',
-        '6p', '7p', '8p', '9p', '10p', '11p'];
-var days = ['Saturday', 'Friday', 'Thursday',
-        'Wednesday', 'Tuesday', 'Monday', 'Sunday'];
+import * as echarts from "echarts";
 
+const hours = [
+  "12a",
+  "1a",
+  "2a",
+  "3a",
+  "4a",
+  "5a",
+  "6a",
+  "7a",
+  "8a",
+  "9a",
+  "10a",
+  "11a",
+  "12p",
+  "1p",
+  "2p",
+  "3p",
+  "4p",
+  "5p",
+  "6p",
+  "7p",
+  "8p",
+  "9p",
+  "10p",
+  "11p"
+];
+const days = [
+  "Saturday",
+  "Friday",
+  "Thursday",
+  "Wednesday",
+  "Tuesday",
+  "Monday",
+  "Sunday"
+].reverse();
 
+const createConfig = inputData => {
+  console.log("inputData", inputData);
 
-
-module.exports = {
-  title: {
-    text: 'Punch Card of Github',
-    link: 'https://github.com/pissang/echarts-next/graphs/punch-card'
-  },
-  legend: {
-    data: ['Punch Card'],
-    left: 'right'
-  },
-  tooltip: {
-    position: 'top',
-    formatter: function(params) {
-      return (
-        params.value[2] +
-        ' commits in ' +
-        hours[params.value[0]] +
-        ' of ' +
-        days[params.value[1]]
-      );
-    }
-  },
-  grid: {
-    left: 2,
-    bottom: 10,
-    right: 10,
-    containLabel: true
-  },
-  xAxis: {
-    type: 'category',
-    data: hours,
-    boundaryGap: false,
-    splitLine: {
-      show: true,
-      lineStyle: {
-        color: '#999',
-        type: 'dashed'
-      }
+  const option = {
+    tooltip: {
+      position: "top"
     },
-    axisLine: {
-      show: false
-    }
-  },
-  yAxis: {
-    type: 'category',
-    data: days,
-    axisLine: {
-      show: false
-    }
-  },
-  series: [
-    {
-      name: 'Punch Card',
-      type: 'scatter',
-      symbolSize: function(val) {
-        return val[2] * 2;
-      },
-      animationDelay: function(idx) {
-        return idx * 5;
+    title: [],
+    singleAxis: [],
+    series: []
+  };
+
+  echarts.util.each(days, function(day, idx) {
+    option.title.push({
+      textBaseline: "middle",
+      top: ((idx + 0.5) * 100) / 7 + "%",
+      text: day
+    });
+    option.singleAxis.push({
+      left: 150,
+      type: "category",
+      boundaryGap: false,
+      data: hours,
+      top: (idx * 100) / 7 + 5 + "%",
+      height: 100 / 7 - 10 + "%",
+      axisLabel: {
+        interval: 2
       }
-    }
-  ]
+    });
+    option.series.push({
+      singleAxisIndex: idx,
+      coordinateSystem: "singleAxis",
+      type: "scatter",
+      data: [],
+      symbolSize: function(dataItem) {
+        return dataItem[1] * 4;
+      }
+    });
+  });
+
+  echarts.util.each(inputData, function(dataItem) {
+    option.series[dataItem[0]].data.push([dataItem[1], dataItem[2]]);
+  });
+
+  return option;
 };
+
+export default createConfig;

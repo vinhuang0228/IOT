@@ -1428,6 +1428,15 @@ const fakeData = {
       lng: "",
       created_at: "2019-01-15 21:08:32",
       updated_at: "2019-01-15 21:08:32"
+    },
+    {
+      id: 8305,
+      macaddr: 12345616,
+      data: "0534",
+      lat: "",
+      lng: "",
+      created_at: "2019-01-15 21:08:32",
+      updated_at: "2019-01-15 21:08:32"
     }
   ]
 };

@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import config from './chart.config.js';
-import transformer from './js/transformer';
-import echarts from 'echarts/lib/echarts';
-import 'echarts/lib/chart/scatter';
-import 'echarts/lib/component/title';
+import React, { Component } from "react";
+import createConfig from "./chart.config.js";
+import transformer from "./js/transformer";
+import echarts from "echarts/lib/echarts";
+import "echarts/lib/chart/scatter";
+import "echarts/lib/component/title";
 
 export class Chart extends React.Component {
   initPlot = id => {
@@ -12,7 +12,8 @@ export class Chart extends React.Component {
     if (myChart === undefined) {
       myChart = echarts.init(document.getElementById(id));
     }
-    myChart.setOption({ ...config, series: [{ ...config.series[0], data }] });
+    console.log("phyllis", createConfig(data));
+    myChart.setOption(createConfig(data));
   };
 
   componentDidMount() {
@@ -24,7 +25,7 @@ export class Chart extends React.Component {
       <div>
         <div
           id={this.props.deviceID}
-          style={{ width: '500px', height: '500px' }}
+          style={{ width: "800px", height: "500px" }}
         />
       </div>
     );
