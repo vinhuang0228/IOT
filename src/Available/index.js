@@ -51,7 +51,7 @@ class Available extends Component {
     const { modalIsOpen, dataToPlot } = this.state;
     return (
       <Body>
-        <Monster title="可以使用喔" subTitle="available" />
+        <Monster title="可以使用哦！" subTitle="Available" />
         <Button onClick={this.handleClick}>Time Analysis >></Button>
         <div>
           <Modal

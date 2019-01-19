@@ -19,10 +19,12 @@ const Row = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin: 16px;
+  margin-top: 48px;
 `;
 
-const Item = styled.div``;
+const Item = styled.div`
+  margin: 64px;
+`;
 
 const Heading = styled.h2`
   font-size: 36px;
@@ -36,8 +38,8 @@ const SubHeading = styled.h2`
 `;
 
 const SubTitle = styled.h6`
-  font-size: 12px;
-  color: #666;
+  font-size: 24px;
+  color: #e55a54;
   margin: 4px;
 `;
 
@@ -59,8 +61,8 @@ const App = () => (
           <Link to={`/${device.deviceID}`}>
             <Img src={device.imgUrl} alt="" />
           </Link>
-          <SubHeading>{device.deviceName}</SubHeading>
-          <SubTitle>{device.deviceEng}</SubTitle>
+          <SubTitle>{device.deviceName}</SubTitle>
+          <SubHeading>{device.deviceEng}</SubHeading>
         </Item>
       ))}
     </Row>

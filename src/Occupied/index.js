@@ -51,7 +51,7 @@ class Occupied extends Component {
     const { modalIsOpen, dataToPlot } = this.state;
     return (
       <Body>
-        <Monster title="使用中" subTitle="Occupied" inUse />
+        <Monster title="使用中哦！" subTitle="Occupied" inUse />
         <Button onClick={this.handleClick}>Time Analysis >></Button>
         <div>
           <Modal
