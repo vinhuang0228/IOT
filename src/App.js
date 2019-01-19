@@ -1,89 +1,70 @@
-import React, { Component } from 'react';
-import Modal from 'react-modal';
-import devices from './constants';
-import fetchData from './js/fetchData';
-import Chart from './Chart';
-import './App.css';
+import React from "react";
+import Modal from "react-modal";
+import styled from "styled-components";
+import devices from "./constants";
+import { Link } from "react-router-dom";
 
-const customStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)'
-  }
-};
+Modal.setAppElement("#root");
 
-Modal.setAppElement('#root');
+export const Body = styled.div`
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  min-height: 100vh;
+  text-align: center;
+`;
 
-class App extends Component {
-  state = {
-    modalIsOpen: false,
-    dataToPlot: null
-  };
+const Row = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 16px;
+`;
 
-  handleClick = ID => {
-    this.setState({ deviceID: ID, dataToPlot: fetchData(ID) });
-    // open up a modal
-    this.openModal();
-  };
+const Item = styled.div``;
 
-  openModal = () => {
-    this.setState({ modalIsOpen: true });
-  };
+const Heading = styled.h2`
+  font-size: 36px;
+  margin-bottom: 0px;
+  color: #e55a54;
+`;
 
-  // afterOpenModal = () => {
+const SubHeading = styled.h2`
+  font-size: 16px;
+  color: gray;
+`;
 
-  // }
+const SubTitle = styled.h6`
+  font-size: 12px;
+  color: #666;
+  margin: 4px;
+`;
 
-  closeModal = () => {
-    this.setState({ modalIsOpen: false });
-  };
+const Img = styled.img`
+  cursor: pointer;
+  height: 200px;
+  width: 200px;
+  margin: 16px;
+  border-radius: 50%;
+`;
 
-  render() {
-    const { modalIsOpen, dataToPlot, deviceID } = this.state;
-    return (
-      <section className="intro">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-12">
-              <h2 className="section-heading">今天想使用什麼器材呢？</h2>
-              <h3 className="section-subheading text-muted">
-                請點擊器材了解使用情形
-              </h3>
-            </div>
-          </div>
-          <div className="row">
-            {devices.map(device => (
-              <div
-                key={device.deviceID}
-                onClick={() => this.handleClick(device.deviceID)}
-              >
-                <div className="col-md-4 col-sea">
-                  <img src={device.imgUrl} alt="" />
-                  <h3>{device.deviceName}</h3>
-                  <h5 className="text-muted">Treadmill</h5>
-                </div>
-              </div>
-            ))}
-          </div>
-          <Modal
-            isOpen={modalIsOpen}
-            onAfterOpen={this.afterOpenModal}
-            onRequestClose={this.closeModal}
-            style={customStyles}
-            contentLabel="Example Modal"
-          >
-            {modalIsOpen && (
-              <Chart dataToPlot={dataToPlot} deviceID={deviceID} />
-            )}
-          </Modal>
-        </div>
-      </section>
-    );
-  }
-}
+const App = () => (
+  <Body>
+      <Heading>今天想使用什麼器材呢？</Heading>
+      <SubHeading>請點擊器材了解使用情形</SubHeading>
+    <Row>
+      {devices.map(device => (
+        <Item key={device.deviceID}>
+          <Link to={`/${device.deviceID}`}>
+            <Img src={device.imgUrl} alt="" />
+          </Link>
+          <SubHeading>{device.deviceName}</SubHeading>
+          <SubTitle>{device.deviceEng}</SubTitle>
+        </Item>
+      ))}
+    </Row>
+  </Body>
+);
 
 export default App;

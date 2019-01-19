@@ -1,4 +1,4 @@
-import moment from 'moment';
+import moment from "moment";
 
 const dict = {
   Sunday: 0,
@@ -7,19 +7,39 @@ const dict = {
   Wednesday: 3,
   Thursday: 4,
   Friday: 5,
-  Saturday: 6,
+  Saturday: 6
 };
 
 const transformer = inputArr => {
-  console.log('your input is ', inputArr);
+  console.log("your input is ", inputArr);
   const temp = inputArr
     .map(data => ({
-      week: dict[moment(data.created_at, 'YYYY-MM-DD HH-mm-ss').format('dddd')],
-      time: moment(data.created_at, 'YYYY-MM-DD HH-mm-ss').hours(),
+      week: dict[moment(data.created_at, "YYYY-MM-DD HH-mm-ss").format("dddd")],
+      time: moment(data.created_at, "YYYY-MM-DD HH-mm-ss").hours()
     }))
     .map(item => [item.week, item.time, 1]);
+  let returnArr = [];
+  let frequencyTable = {};
 
-  return temp;
+  for (let i = 0; i < temp.length; i++) {
+    const keyName = `${temp[i][0]}-${temp[i][1]}`;
+    if (!frequencyTable[keyName]) {
+      frequencyTable[keyName] = 1;
+    } else {
+      frequencyTable[keyName]++;
+    }
+  }
+
+  for (let key in frequencyTable) {
+    const myRegexp = /(\d)-(\d)/g;
+    const matched = myRegexp.exec(key);
+    console.log('matched', matched)
+    returnArr.push([Number(matched[1]), Number(matched[2]), frequencyTable[key]])
+  }
+
+  console.log('returnArr', returnArr)
+
+  return returnArr;
 };
 
 export default transformer;

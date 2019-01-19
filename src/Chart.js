@@ -5,7 +5,7 @@ import echarts from "echarts/lib/echarts";
 import "echarts/lib/chart/scatter";
 import "echarts/lib/component/title";
 
-export class Chart extends React.Component {
+class Chart extends Component {
   initPlot = id => {
     const data = transformer(this.props.dataToPlot);
     let myChart = echarts.getInstanceByDom(document.getElementById(id));
