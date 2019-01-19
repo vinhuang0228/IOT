@@ -12,6 +12,7 @@ export const Body = styled.div`
   width: 100vw;
   min-height: 100vh;
   text-align: center;
+  margin-top: 64px;
 `;
 
 const Row = styled.div`
@@ -19,7 +20,7 @@ const Row = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-top: 48px;
+  margin-top: 32px;
 `;
 
 const Item = styled.div`
