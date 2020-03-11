@@ -1,18 +1,6 @@
 import * as echarts from "echarts";
 
 const hours = [
-  "12a",
-  "1a",
-  "2a",
-  "3a",
-  "4a",
-  "5a",
-  "6a",
-  "7a",
-  "8a",
-  "9a",
-  "10a",
-  "11a",
   "12p",
   "1p",
   "2p",
@@ -24,7 +12,19 @@ const hours = [
   "8p",
   "9p",
   "10p",
-  "11p"
+  "11p",
+  "12a",
+  "1a",
+  "2a",
+  "3a",
+  "4a",
+  "5a",
+  "6a",
+  "7a",
+  "8a",
+  "9a",
+  "10a",
+  "11a"
 ];
 const days = [
   "Saturday",
