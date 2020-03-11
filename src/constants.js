@@ -18,7 +18,7 @@ const devices = [
     deviceEng: "Weightlifting",
     deviceID: "12345616",
     imgUrl:
-      "http://www.fmtxlj.com/images/201412/goods_img/238_P_1417407472906.jpg"
+      "https://cbu01.alicdn.com/img/ibank/2017/553/097/4525790355_1896833577.310x310.jpg"
   }
 ];
 
